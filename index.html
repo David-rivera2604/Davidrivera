@@ -6,10 +6,10 @@
 <title>David Rivera — Ingeniero de Software Full-Stack | Datos y BI</title>
 <meta name="description" content="David Rivera, ingeniero de software full-stack en Mapfre. C#, ASP.NET Web API, JavaScript, SQL, Oracle, Power BI y Python. Cartago, Costa Rica." />
 <meta name="author" content="David Rivera" />
-<meta name="theme-color" content="#f3f0e8" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#121210" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#ebe7dd" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0f0f0d" media="(prefers-color-scheme: dark)" />
 <meta property="og:title" content="David Rivera — Ingeniero de Software Full-Stack | Datos y BI" />
-<meta property="og:description" content="Entré a Mapfre como pasante. Hoy construyo sus aplicaciones web." />
+<meta property="og:description" content="Ingeniero de software en Mapfre. Aplicaciones web full-stack con C#, ASP.NET Web API y JavaScript sobre SQL y Oracle." />
 <meta property="og:type" content="profile" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,343 +17,288 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet" />
 <style>
 :root{
-  --paper:#f3f0e8;
+  --desk:#ebe7dd;
+  --paper:#fbfaf6;
   --ink:#15140f;
-  --body:#3b3930;
-  --soft:#6f6b5e;
-  --rule:#15140f;
-  --hair:#d3cec0;
+  --body:#3d3b32;
+  --soft:#6e6a5d;
+  --hair:#dcd7ca;
   --accent:#b5360f;
   --serif:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
   --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --gutter:clamp(20px,4.4vw,64px);
-  --col:minmax(0,3fr) minmax(0,9fr);
+  --pad:clamp(22px,5vw,60px);
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --paper:#121210;
-    --ink:#efece3;
-    --body:#c9c5b8;
-    --soft:#948f80;
-    --rule:#efece3;
-    --hair:#34322b;
+    --desk:#0f0f0d;
+    --paper:#181816;
+    --ink:#f0ede4;
+    --body:#cbc7ba;
+    --soft:#958f80;
+    --hair:#302e28;
     --accent:#ff8257;
   }
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
-body{background:var(--paper);color:var(--body);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--desk);color:var(--body);font-family:var(--sans);font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding:clamp(0px,3vw,44px) clamp(0px,3vw,32px)}
 a{color:inherit;text-decoration:none}
 ul,ol{list-style:none}
 img{display:block;max-width:100%;height:auto}
 ::selection{background:var(--accent);color:var(--paper)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-.page{max-width:1360px;margin:0 auto;padding:0 var(--gutter)}
-.mono{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--soft)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--paper);padding:10px 14px;z-index:20}
 .skip:focus{left:8px}
+.label{font-family:var(--mono);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--soft)}
 
-.top{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--hair)}
-.top-in{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:56px}
-.top a{display:inline-flex;align-items:center;min-height:44px}
-.top-name{font-family:var(--serif);font-size:21px;font-weight:500;color:var(--ink);letter-spacing:-.01em}
-.top-nav{display:flex;gap:clamp(16px,2.6vw,36px)}
-.top-nav a{color:var(--body);transition:color .15s}
-.top-nav a:hover{color:var(--accent)}
-.top-place{white-space:nowrap}
+.sheet{max-width:1020px;margin:0 auto;background:var(--paper);border:1px solid var(--hair);box-shadow:0 30px 60px -40px rgba(21,20,15,.35)}
 
-.hero{padding:clamp(56px,9vw,128px) 0 clamp(48px,7vw,96px)}
-.hero-kicker{display:flex;flex-wrap:wrap;gap:6px 28px;color:var(--soft)}
-.hero-kicker b{font-weight:500;color:var(--ink)}
-.hero-kicker .open{color:var(--accent)}
-.hero h1{margin-top:clamp(24px,3.4vw,44px);font-family:var(--serif);font-weight:400;font-size:clamp(46px,9.1vw,148px);line-height:.94;letter-spacing:-.035em;color:var(--ink);max-width:13ch;text-wrap:balance}
-.hero h1 em{font-style:italic;font-weight:300;color:var(--accent);letter-spacing:-.03em}
-.hero-body{display:grid;grid-template-columns:var(--col);gap:clamp(24px,4vw,56px);margin-top:clamp(40px,6vw,88px);padding-top:28px;border-top:1px solid var(--rule)}
-.lede{font-family:var(--serif);font-size:clamp(21px,2.1vw,29px);line-height:1.38;letter-spacing:-.012em;color:var(--ink);max-width:36em}
-.actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;margin-top:36px}
-.cta{display:inline-flex;align-items:center;gap:14px;min-height:52px;padding:0 26px;background:var(--ink);color:var(--paper);font-size:16px;font-weight:500;transition:background .15s}
-.cta:hover{background:var(--accent)}
-.cta span{transition:transform .2s ease-out}
-.cta:hover span{transform:translateX(4px)}
-.link{display:inline-flex;align-items:center;min-height:44px;font-size:16px;font-weight:500;color:var(--ink);background:linear-gradient(currentColor,currentColor) 0 calc(100% - 9px)/100% 1px no-repeat;transition:color .15s}
-.link:hover{color:var(--accent)}
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;padding:var(--pad) var(--pad) 30px;border-bottom:1px solid var(--ink)}
+.head h1{font-family:var(--serif);font-weight:400;font-size:clamp(42px,6.4vw,68px);line-height:1;letter-spacing:-.032em;color:var(--ink)}
+.role{margin-top:12px;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(19px,2.2vw,23px);letter-spacing:-.01em;color:var(--accent)}
+.head-actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 20px;border:1px solid var(--ink);font-family:inherit;font-size:14.5px;font-weight:500;color:var(--ink);background:transparent;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn-solid{background:var(--ink);color:var(--paper)}
+.btn-solid:hover{background:var(--accent);border-color:var(--accent);color:var(--paper)}
 
-.section{display:grid;grid-template-columns:var(--col);gap:clamp(24px,4vw,56px);padding:28px 0 clamp(64px,9vw,128px);border-top:1px solid var(--rule)}
-.section-head{position:sticky;top:84px;align-self:start}
-.section-head h2{margin-top:10px;font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.2vw,44px);line-height:1.05;letter-spacing:-.025em;color:var(--ink)}
-.num{color:var(--accent)}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px)}
+.main{padding:34px var(--pad) var(--pad)}
+.aside{padding:34px clamp(22px,3vw,34px) var(--pad);border-left:1px solid var(--hair)}
 
-.claim{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4vw,58px);line-height:1.08;letter-spacing:-.028em;color:var(--ink);max-width:18ch;text-wrap:balance}
-.claim em{font-style:italic;font-weight:300;color:var(--accent)}
+.block+.block{margin-top:38px}
+.block>h2{display:flex;align-items:baseline;gap:12px;padding-bottom:9px;border-bottom:1px solid var(--hair);font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink)}
+.block>h2 span{color:var(--accent)}
 
-.jobs{margin-top:clamp(40px,5vw,72px)}
-.job{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:8px 32px;padding:28px 0;border-top:1px solid var(--hair)}
-.job:last-child{border-bottom:1px solid var(--hair)}
-.job-when{padding-top:9px}
-.job-when .now{display:block;margin-top:6px;color:var(--accent)}
-.job h3{font-family:var(--serif);font-weight:400;font-size:clamp(27px,2.9vw,40px);line-height:1.1;letter-spacing:-.022em;color:var(--ink)}
-.job-where{margin-top:8px;font-size:15.5px;color:var(--soft)}
-.job-where b{font-weight:600;color:var(--ink)}
-.job-did{margin-top:18px;display:grid;gap:8px;max-width:46em}
-.job-did li{position:relative;padding-left:26px}
-.job-did li::before{content:"—";position:absolute;left:0;color:var(--soft)}
+.profile{margin-top:16px;font-family:var(--serif);font-size:19.5px;line-height:1.45;letter-spacing:-.008em;color:var(--ink)}
 
-.spec{border-bottom:1px solid var(--hair)}
-.spec-row{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:6px 32px;padding:22px 0;border-top:1px solid var(--hair)}
-.spec-row dt{padding-top:8px}
-.spec-row dd{font-family:var(--serif);font-size:clamp(22px,2.3vw,31px);line-height:1.28;letter-spacing:-.015em;color:var(--ink)}
-.spec-row dd span{color:var(--soft)}
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 20px;padding:18px 0;border-bottom:1px solid var(--hair)}
+.item:last-child{border-bottom:0;padding-bottom:0}
+.item h3{font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.2;letter-spacing:-.015em;color:var(--ink)}
+.item time{padding-top:5px;white-space:nowrap;color:var(--soft)}
+.item .now{color:var(--accent)}
+.where{grid-column:1/-1;font-size:14.5px;color:var(--soft)}
+.where b{font-weight:600;color:var(--ink)}
+.did{grid-column:1/-1;margin-top:9px;display:grid;gap:4px}
+.did li{position:relative;padding-left:18px}
+.did li::before{content:"";position:absolute;left:1px;top:.72em;width:7px;height:1px;background:var(--soft)}
 
-.school{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:6px 32px;padding:24px 0;border-top:1px solid var(--hair)}
-.school-when{padding-top:8px}
-.school h3{font-family:var(--serif);font-weight:400;font-size:clamp(23px,2.3vw,31px);line-height:1.18;letter-spacing:-.018em;color:var(--ink)}
-.school div p{margin-top:6px;font-size:15.5px;color:var(--soft)}
-.courses{padding-top:24px;border-top:1px solid var(--hair)}
-.courses ul{margin-top:14px;display:grid;gap:8px}
-.courses li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 24px;max-width:46em;color:var(--body)}
-.courses li span{color:var(--soft);font-size:15px}
+.facts{margin-top:14px;display:grid;gap:13px}
+.facts dt{margin-bottom:1px}
+.facts dd{color:var(--ink);overflow-wrap:anywhere}
+.facts a{background:linear-gradient(var(--hair),var(--hair)) 0 100%/100% 1px no-repeat;transition:color .15s}
+.facts a:hover{color:var(--accent)}
+.pair{display:flex;justify-content:space-between;gap:16px;padding:7px 0;border-bottom:1px solid var(--hair);color:var(--ink)}
+.pair:last-child{border-bottom:0}
+.pair span{color:var(--soft)}
+.plain{margin-top:14px;color:var(--ink)}
+.project img{width:128px;margin-top:16px}
+@media (prefers-color-scheme:dark){.project img{filter:invert(1) brightness(1.6)}}
+.project p{margin-top:14px}
+.project a{display:inline-block;margin-top:8px;color:var(--ink);font-weight:500;background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:color .15s}
+.project a:hover{color:var(--accent)}
+.courses{margin-top:14px;display:grid;gap:9px}
+.courses li{color:var(--ink);line-height:1.4}
+.courses span{display:block;font-size:13.5px;color:var(--soft)}
 
-.side{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:start}
-.side p{font-family:var(--serif);font-size:clamp(21px,2.1vw,29px);line-height:1.38;letter-spacing:-.012em;color:var(--ink);max-width:30em}
-.side .link{margin-top:22px}
-.side img{width:clamp(140px,15vw,210px)}
-@media (prefers-color-scheme:dark){.side img{filter:invert(1) brightness(1.6)}}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 20px;padding:16px var(--pad);border-top:1px solid var(--hair)}
 
-.contact{padding:28px 0 clamp(56px,8vw,112px);border-top:1px solid var(--rule)}
-.contact h2{margin-top:clamp(28px,5vw,72px);font-family:var(--serif);font-weight:400;font-size:clamp(46px,9.1vw,148px);line-height:.94;letter-spacing:-.035em;color:var(--ink)}
-.contact h2 em{font-style:italic;font-weight:300;color:var(--accent)}
-.mail{display:inline-block;margin-top:clamp(28px,4vw,56px);font-family:var(--serif);font-size:clamp(25px,4.6vw,68px);line-height:1.15;letter-spacing:-.025em;color:var(--ink);overflow-wrap:anywhere;background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:color .15s}
-.mail:hover{color:var(--accent)}
-.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(40px,6vw,80px);border-top:1px solid var(--hair)}
-.ways a{display:block;padding:20px 24px 20px 0;border-bottom:1px solid var(--hair);transition:color .15s}
-.ways a b{display:block;margin-top:6px;font-family:var(--serif);font-weight:400;font-size:clamp(21px,2vw,27px);letter-spacing:-.015em;color:var(--ink);transition:color .15s}
-.ways a:hover b{color:var(--accent)}
-
-.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:22px 0 34px;border-top:1px solid var(--rule)}
-
-@media (prefers-reduced-motion:no-preference){
-  .hero-kicker,.hero h1,.hero-body{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
-  .hero h1{animation-delay:.08s}
-  .hero-body{animation-delay:.2s}
-  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (max-width:800px){
+  .cols{grid-template-columns:1fr}
+  .aside{border-left:0;border-top:1px solid var(--hair);padding:34px var(--pad) var(--pad)}
+  .aside-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:38px 32px}
+  .aside-grid .block+.block{margin-top:0}
 }
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .cta span{transition:none}
+@media (max-width:560px){
+  body{padding:0}
+  .sheet{border:0;box-shadow:none}
+  .aside-grid{grid-template-columns:1fr}
+  .item{grid-template-columns:1fr}
+  .item time{order:-1;padding-top:0}
+  .head-actions{width:100%}
+  .btn{flex:1;justify-content:center}
 }
-@media (max-width:900px){
-  :root{--col:minmax(0,1fr)}
-  .section-head{position:static}
-  .top-nav a:not(.keep){display:none}
-  .ways{grid-template-columns:1fr}
-}
-@media (max-width:620px){
-  body{font-size:16px}
-  .top-place{display:none}
-  .job,.spec-row,.school{grid-template-columns:1fr}
-  .job-when,.spec-row dt,.school-when{padding-top:0}
-  .job-when .now{display:inline;margin:0 0 0 10px}
-  .side{grid-template-columns:1fr}
-  .cta{width:100%;justify-content:space-between}
+@media print{
+  @page{size:letter;margin:10mm 12mm}
+  body{background:#fff;padding:0;font-size:8.6pt;line-height:1.42}
+  .sheet{max-width:none;border:0;box-shadow:none;background:#fff}
+  .head-actions,.skip,.foot,.screen,.project img{display:none}
+  .head{padding:0 0 10pt}
+  .head h1{font-size:27pt}
+  .role{margin-top:5pt;font-size:12pt}
+  .label,.block>h2{font-size:6.8pt}
+  .cols{grid-template-columns:minmax(0,1fr) 2.25in}
+  .main{padding:12pt 18pt 0 0}
+  .aside{padding:12pt 0 0 16pt}
+  .block+.block{margin-top:13pt}
+  .aside .block+.block{margin-top:7.5pt}
+  .block>h2{padding-bottom:5pt}
+  .profile{margin-top:8pt;font-size:11pt;line-height:1.38}
+  .item{padding:7pt 0;break-inside:avoid}
+  .item h3{font-size:12pt}
+  .where{font-size:8.4pt}
+  .did{margin-top:4pt;gap:1pt}
+  .facts{margin-top:6pt;gap:3.5pt}
+  .plain,.courses{margin-top:8pt}
+  .courses{gap:3pt}
+  .courses span{font-size:7.6pt}
+  .pair{padding:3pt 0}
+  .project img{width:76pt;margin-top:8pt}
+  .project p{margin-top:6pt}
+  .project a{margin-top:3pt}
 }
 </style>
 </head>
 <body>
-<a class="skip" href="#trayectoria">Saltar al contenido</a>
+<a class="skip" href="#perfil">Saltar al contenido</a>
 
-<header class="top">
-  <div class="page top-in">
-    <a class="top-name" href="#inicio">David Rivera</a>
-    <nav class="top-nav mono" aria-label="Principal">
-      <a href="#trayectoria">Trayectoria</a>
-      <a href="#stack">Stack</a>
-      <a href="#educacion">Educación</a>
-      <a class="keep" href="#contacto">Contacto</a>
-    </nav>
-    <span class="top-place mono">Cartago, CR <span id="clock"></span></span>
-  </div>
-</header>
-
-<main class="page" id="inicio">
-  <section class="hero">
-    <p class="hero-kicker mono">
-      <b>Ingeniero de Software Full-Stack | Datos y BI</b>
-      <span>Mapfre, San José</span>
-      <span class="open">Abierto a nuevas oportunidades</span>
-    </p>
-    <h1>Entré a Mapfre como <em>pasante.</em> Hoy construyo sus aplicaciones web.</h1>
-    <div class="hero-body">
-      <p class="mono">Perfil profesional</p>
-      <div>
-        <p class="lede">Ingeniero de software en Mapfre, donde empecé como pasante en 2025 y pasé por análisis de datos antes de llegar a desarrollo. Hoy trabajo en aplicaciones web full-stack con C#, ASP.NET Web API y JavaScript sobre SQL y Oracle, y uso Power BI y Python para reportes y automatización. Estudio Ciencias de la Computación en la UNED.</p>
-        <div class="actions">
-          <a class="cta" href="mailto:JR2834kla@gmail.com">Escribirme <span aria-hidden="true">→</span></a>
-          <a class="link" href="https://www.linkedin.com/in/david-rivera-485b60261/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="link" href="https://wa.me/50686743820" target="_blank" rel="noopener">WhatsApp</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="trayectoria">
-    <div class="section-head">
-      <p class="mono"><span class="num">01</span> — 2024 a hoy</p>
-      <h2>Trayectoria</h2>
-    </div>
+<div class="sheet">
+  <header class="head">
     <div>
-      <p class="claim">Tres cargos en la misma empresa en <em>once meses.</em></p>
-      <ol class="jobs">
-        <li class="job">
-          <p class="job-when mono">Sep 2026 – Actual<span class="now">Cargo actual</span></p>
-          <div>
-            <h3>Software Engineer</h3>
-            <p class="job-where"><b>Mapfre</b> · San Pedro, San José · Contrato</p>
-            <ul class="job-did">
-              <li>Desarrollo y mantenimiento de sistemas y aplicaciones web full-stack.</li>
-              <li>Servicios en C# y ASP.NET Web API; interfaces en JavaScript y HTML.</li>
-              <li>Integración de APIs (JSON) con bases de datos SQL y Oracle.</li>
-            </ul>
-          </div>
-        </li>
-        <li class="job">
-          <p class="job-when mono">Dic 2025 – Sep 2026</p>
-          <div>
-            <h3>Data Analyst</h3>
-            <p class="job-where"><b>Mapfre</b> · Costa Rica · Tiempo completo, híbrido</p>
-            <ul class="job-did">
-              <li>Reportes y tableros de Business Intelligence en Power BI.</li>
-              <li>Análisis y visualización de datos con Python.</li>
-            </ul>
-          </div>
-        </li>
-        <li class="job">
-          <p class="job-when mono">Oct 2025 – Nov 2025</p>
-          <div>
-            <h3>Pasante</h3>
-            <p class="job-where"><b>Mapfre</b> · San Pedro, San José · Presencial</p>
-            <ul class="job-did">
-              <li>Análisis de bases de datos.</li>
-              <li>Automatización de procesos repetitivos con VBA.</li>
-            </ul>
-          </div>
-        </li>
-        <li class="job">
-          <p class="job-when mono">Sep 2024</p>
-          <div>
-            <h3>Pasante</h3>
-            <p class="job-where"><b>BTA Business &amp; Talent Advisors</b> · Remoto · Tiempo completo</p>
-          </div>
-        </li>
-      </ol>
+      <h1>David Rivera</h1>
+      <p class="role">Ingeniero de Software Full-Stack | Datos y BI</p>
     </div>
-  </section>
+    <div class="head-actions">
+      <a class="btn btn-solid" href="mailto:JR2834kla@gmail.com">Escribirme</a>
+      <a class="btn" href="https://www.linkedin.com/in/david-rivera-485b60261/" target="_blank" rel="noopener">LinkedIn</a>
+      <button class="btn" id="print" type="button">Descargar PDF</button>
+    </div>
+  </header>
 
-  <section class="section" id="stack">
-    <div class="section-head">
-      <p class="mono"><span class="num">02</span> — Con qué trabajo</p>
-      <h2>Habilidades técnicas</h2>
-    </div>
-    <dl class="spec">
-      <div class="spec-row"><dt class="mono">Lenguajes</dt><dd>C#, JavaScript, TypeScript, Python, SQL, Java, C++, HTML, CSS</dd></div>
-      <div class="spec-row"><dt class="mono">Frameworks y datos</dt><dd>ASP.NET Web API, Node.js, APIs REST, JSON, Oracle, Power BI</dd></div>
-      <div class="spec-row"><dt class="mono">Automatización</dt><dd>n8n, UiPath, VBA</dd></div>
-      <div class="spec-row"><dt class="mono">Herramientas</dt><dd>Git, GitHub, Bitbucket, Arduino</dd></div>
-      <div class="spec-row"><dt class="mono">Inteligencia artificial</dt><dd>GitHub Copilot, Claude, ChatGPT</dd></div>
-      <div class="spec-row"><dt class="mono">Competencias</dt><dd>Capacidad de análisis, análisis funcional, negociación</dd></div>
-      <div class="spec-row"><dt class="mono">Idiomas</dt><dd>Español <span>nativo</span>, inglés <span>B2+</span></dd></div>
-    </dl>
-  </section>
+  <div class="cols">
+    <main class="main">
+      <section class="block" id="perfil">
+        <h2><span>01</span>Perfil profesional</h2>
+        <p class="profile">Ingeniero de software en Mapfre, donde empecé como pasante en 2025 y pasé por análisis de datos antes de llegar a desarrollo. Hoy trabajo en aplicaciones web full-stack con C#, ASP.NET Web API y JavaScript sobre SQL y Oracle, y uso Power BI y Python para reportes y automatización. Estudio Ciencias de la Computación en la UNED.</p>
+      </section>
 
-  <section class="section" id="educacion">
-    <div class="section-head">
-      <p class="mono"><span class="num">03</span> — Formación</p>
-      <h2>Educación</h2>
-    </div>
-    <div>
-      <article class="school">
-        <p class="school-when mono">2026 – 2028</p>
-        <div>
+      <section class="block" id="experiencia">
+        <h2><span>02</span>Experiencia</h2>
+        <article class="item">
+          <h3>Software Engineer</h3>
+          <time class="label now">Sep 2026 – Actual</time>
+          <p class="where"><b>Mapfre</b> · San Pedro, San José · Contrato</p>
+          <ul class="did">
+            <li>Desarrollo y mantenimiento de sistemas y aplicaciones web full-stack.</li>
+            <li>Servicios en C# y ASP.NET Web API; interfaces en JavaScript y HTML.</li>
+            <li>Integración de APIs (JSON) con bases de datos SQL y Oracle.</li>
+          </ul>
+        </article>
+        <article class="item">
+          <h3>Data Analyst</h3>
+          <time class="label">Dic 2025 – Sep 2026</time>
+          <p class="where"><b>Mapfre</b> · Costa Rica · Tiempo completo, híbrido</p>
+          <ul class="did">
+            <li>Reportes y tableros de Business Intelligence en Power BI.</li>
+            <li>Análisis y visualización de datos con Python.</li>
+          </ul>
+        </article>
+        <article class="item">
+          <h3>Pasante</h3>
+          <time class="label">Oct 2025 – Nov 2025</time>
+          <p class="where"><b>Mapfre</b> · San Pedro, San José · Presencial</p>
+          <ul class="did">
+            <li>Análisis de bases de datos.</li>
+            <li>Automatización de procesos repetitivos con VBA.</li>
+          </ul>
+        </article>
+        <article class="item">
+          <h3>Pasante</h3>
+          <time class="label">Sep 2024</time>
+          <p class="where"><b>BTA Business &amp; Talent Advisors</b> · Remoto · Tiempo completo</p>
+        </article>
+      </section>
+
+      <section class="block" id="educacion">
+        <h2><span>03</span>Educación</h2>
+        <article class="item">
           <h3>Bachillerato en Ciencias de la Computación</h3>
-          <p>UNED · En curso</p>
-        </div>
-      </article>
-      <article class="school">
-        <p class="school-when mono">Técnico</p>
-        <div>
+          <time class="label">2026 – 2028</time>
+          <p class="where"><b>UNED</b> · En curso</p>
+        </article>
+        <article class="item">
           <h3>Técnico en Ingeniería, Análisis Funcional</h3>
-          <p>Universidad Cenfotec</p>
-        </div>
-      </article>
-      <article class="school">
-        <p class="school-when mono">Técnico</p>
-        <div>
+          <p class="where"><b>Universidad Cenfotec</b></p>
+        </article>
+        <article class="item">
           <h3>Técnico en Servicios de Apoyo Bancario y Financiero</h3>
-          <p>CTP</p>
-        </div>
-      </article>
-      <article class="school">
-        <p class="school-when mono">2020 – 2025</p>
-        <div>
+          <p class="where"><b>CTP</b></p>
+        </article>
+        <article class="item">
           <h3>Educación secundaria</h3>
-          <p>Fernando Volio</p>
-        </div>
-      </article>
-      <div class="courses">
-        <p class="mono">Cursos complementarios</p>
-        <ul>
-          <li>Legitimación de Capitales y Financiamiento al Terrorismo <span>ICD, 2024</span></li>
-          <li>Inteligencia Artificial <span>Claude / OpenAI, 2025</span></li>
-          <li>Excel Avanzado <span>Classeflix, 2025</span></li>
-          <li>VBA con Inteligencia Artificial</li>
-        </ul>
+          <time class="label">2020 – 2025</time>
+          <p class="where"><b>Fernando Volio</b></p>
+        </article>
+      </section>
+    </main>
+
+    <aside class="aside">
+      <div class="aside-grid">
+        <section class="block" id="contacto">
+          <h2>Contacto</h2>
+          <dl class="facts">
+            <div><dt class="label">Ubicación</dt><dd>Cartago, Costa Rica</dd></div>
+            <div><dt class="label">Teléfono</dt><dd><a href="tel:+50686743820">+506 8674 3820</a></dd></div>
+            <div><dt class="label">Correo</dt><dd><a href="mailto:JR2834kla@gmail.com">JR2834kla@gmail.com</a></dd></div>
+            <div><dt class="label">LinkedIn</dt><dd><a href="https://www.linkedin.com/in/david-rivera-485b60261/" target="_blank" rel="noopener">linkedin.com/in/david-rivera-485b60261</a></dd></div>
+            <div class="screen"><dt class="label">WhatsApp</dt><dd><a href="https://wa.me/50686743820" target="_blank" rel="noopener">Mensaje directo</a></dd></div>
+          </dl>
+        </section>
+
+        <section class="block">
+          <h2>Habilidades técnicas</h2>
+          <dl class="facts">
+            <div><dt class="label">Lenguajes</dt><dd>C# · JavaScript · TypeScript · Python · SQL · Java · C++ · HTML · CSS</dd></div>
+            <div><dt class="label">Frameworks y datos</dt><dd>ASP.NET Web API · Node.js · APIs REST · JSON · Oracle · Power BI</dd></div>
+            <div><dt class="label">Automatización</dt><dd>n8n · UiPath · VBA</dd></div>
+            <div><dt class="label">Herramientas</dt><dd>Git · GitHub · Bitbucket · Arduino</dd></div>
+            <div><dt class="label">Inteligencia artificial</dt><dd>GitHub Copilot · Claude · ChatGPT</dd></div>
+          </dl>
+        </section>
+
+        <section class="block">
+          <h2>Competencias</h2>
+          <p class="plain">Capacidad de análisis · Análisis funcional · Negociación</p>
+        </section>
+
+        <section class="block">
+          <h2>Idiomas</h2>
+          <div class="plain">
+            <p class="pair">Español <span>Nativo</span></p>
+            <p class="pair">Inglés <span>B2+</span></p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2>Cursos</h2>
+          <ul class="courses">
+            <li>Legitimación de Capitales y Financiamiento al Terrorismo<span>ICD, 2024</span></li>
+            <li>Inteligencia Artificial<span>Claude / OpenAI, 2025</span></li>
+            <li>Excel Avanzado<span>Classeflix, 2025</span></li>
+            <li>VBA con Inteligencia Artificial</li>
+          </ul>
+        </section>
+
+        <section class="block project">
+          <h2>Proyecto propio</h2>
+          <img src="assets/drt-solutions.png" alt="DRT Solutions" width="790" height="308" />
+          <p>Empresa propia de desarrollo de páginas web para negocios en Costa Rica.</p>
+          <a href="https://drtsolutionscr.com" target="_blank" rel="noopener">drtsolutionscr.com</a>
+        </section>
       </div>
-    </div>
-  </section>
+    </aside>
+  </div>
 
-  <section class="section" id="proyecto">
-    <div class="section-head">
-      <p class="mono"><span class="num">04</span> — Por cuenta propia</p>
-      <h2>DRT Solutions</h2>
-    </div>
-    <div class="side">
-      <div>
-        <p>Fundé DRT Solutions, mi empresa de desarrollo de páginas web para negocios en Costa Rica. Me encargo de todo el recorrido: levantar requerimientos, diseñar, construir, publicar y dar soporte.</p>
-        <a class="link" href="https://drtsolutionscr.com" target="_blank" rel="noopener">drtsolutionscr.com</a>
-      </div>
-      <img src="assets/drt-solutions.png" alt="Logo de DRT Solutions" width="790" height="308" />
-    </div>
-  </section>
-
-  <section class="contact" id="contacto">
-    <p class="mono"><span class="num">05</span> — Contacto</p>
-    <h2>¿Hablamos<em>?</em></h2>
-    <a class="mail" href="mailto:JR2834kla@gmail.com">JR2834kla@gmail.com</a>
-    <div class="ways">
-      <a href="tel:+50686743820"><span class="mono">Teléfono</span><b>+506 8674 3820</b></a>
-      <a href="https://wa.me/50686743820" target="_blank" rel="noopener"><span class="mono">WhatsApp</span><b>Mensaje directo</b></a>
-      <a href="https://www.linkedin.com/in/david-rivera-485b60261/" target="_blank" rel="noopener"><span class="mono">LinkedIn</span><b>david-rivera-485b60261</b></a>
-    </div>
-  </section>
-
-  <footer class="foot mono">
+  <footer class="foot label">
     <span>© <span id="year"></span> David Rivera</span>
     <span>Cartago, Costa Rica</span>
   </footer>
-</main>
+</div>
 
 <script>
-(function(){
-  document.getElementById('year').textContent=new Date().getFullYear();
-  var clock=document.getElementById('clock');
-  function tick(){
-    try{
-      clock.textContent='· '+new Intl.DateTimeFormat('es-CR',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/Costa_Rica'}).format(new Date());
-    }catch(e){clock.textContent=''}
-  }
-  tick();
-  setInterval(tick,30000);
-})();
+document.getElementById('year').textContent=new Date().getFullYear();
+document.getElementById('print').addEventListener('click',function(){window.print()});
 </script>
 </body>
 </html>
