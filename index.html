@@ -14,68 +14,114 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script>document.documentElement.classList.add('js')</script>
 <style>
-:root{--bg:#0a0c0f;--surface:#11151a;--surface2:#0d1014;--ink:#f2f4f7;--body:#b3bbc6;--soft:#7f8996;--line:#222830;--accent:#4ade80;--on-accent:#06210f;--display:"IBM Plex Sans",Helvetica,Arial,sans-serif;--sans:"IBM Plex Sans",Helvetica,Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;--h-weight:600;--h-track:-.025em;--h1-track:-.04em;--tag-size:12px;--tag-weight:500;--tag-track:.06em;--radius:10px;--btn-radius:7px;--chip-radius:5px;--dot-radius:6px;--nav-bg:rgba(10,12,15,.86);--nav-line:#222830;--nav-ink:#f2f4f7;--nav-soft:#9099a6;--btn-line:#2c343e;--btn-ink:#f2f4f7;--cta-bg:#4ade80;--cta-ink:#06210f;--cta-hover:#86efac;--hero-bg:#0a0c0f;--hero-line:#222830;--hero-ink:#f2f4f7;--hero-body:#b3bbc6;--hero-soft:#7f8996;--hero-accent:#4ade80;--hero-btn-line:#2c343e;--hero-card:#11151a;--hero-card-line:#222830;--role-font:var(--mono);--role-style:normal;--role-weight:400;--lede-font:var(--sans);--lede-size:18px;--chip-bg:#0d1014;--chip-line:#262d36;--chip-ink:#d5dbe3;--chip-font:var(--mono);--logo-bg:#f2f4f7}
-.hero .hero-role{font-size:16px}.hero-role::before{content:"> ";color:var(--soft)}
+:root{
+  --bg:#0a0c0f;
+  --surface:#11151a;
+  --surface2:#0d1014;
+  --ink:#f2f4f7;
+  --body:#b3bbc6;
+  --soft:#7f8996;
+  --line:#222830;
+  --accent:#4ade80;
+  --accent-rgb:74,222,128;
+  --on-accent:#06210f;
+  --sans:"IBM Plex Sans",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --radius:10px;
+  --ease:cubic-bezier(.2,.75,.2,1);
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:76px;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--body);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{background:var(--bg);color:var(--body);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 ul,ol{list-style:none}
 img{display:block;max-width:100%;height:auto}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 ::selection{background:var(--accent);color:var(--on-accent)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
-.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bg);padding:10px 14px;z-index:30}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bg);padding:10px 14px;z-index:60}
 .skip:focus{left:8px}
-.tag{font-family:var(--mono);font-size:var(--tag-size);font-weight:var(--tag-weight);letter-spacing:var(--tag-track);text-transform:uppercase;color:var(--soft)}
-h1,h2,h3{font-family:var(--display);color:var(--ink);font-weight:var(--h-weight);letter-spacing:var(--h-track);line-height:1.12}
+.tag{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+h1,h2,h3{color:var(--ink);font-weight:600;letter-spacing:-.025em;line-height:1.12}
 
-.nav{position:sticky;top:0;z-index:20;background:var(--nav-bg);border-bottom:1px solid var(--nav-line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:50;background:var(--accent);transform-origin:0 50%;transform:scaleX(var(--s,0));box-shadow:0 0 12px rgba(var(--accent-rgb),.7)}
+
+.nav{position:sticky;top:0;z-index:40;background:rgba(10,12,15,.82);border-bottom:1px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:60px}
-.brand{display:inline-flex;align-items:center;min-height:44px;font-family:var(--display);font-weight:var(--h-weight);font-size:18px;letter-spacing:var(--h-track);color:var(--nav-ink)}
+.brand{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-weight:600;font-size:18px;letter-spacing:-.025em;color:var(--ink)}
+.brand i{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(var(--accent-rgb),.6);animation:ping 2.4s ease-out infinite}
+@keyframes ping{70%,100%{box-shadow:0 0 0 9px rgba(var(--accent-rgb),0)}}
 .nav-links{display:flex;gap:clamp(14px,2.4vw,30px)}
-.nav-links a{display:inline-flex;align-items:center;min-height:44px;font-size:14.5px;font-weight:500;color:var(--nav-soft);transition:color .15s}
-.nav-links a:hover{color:var(--nav-ink)}
+.nav-links a{position:relative;display:inline-flex;align-items:center;min-height:44px;font-size:14.5px;font-weight:500;color:#9099a6;transition:color .15s}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;transition:transform .3s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a.active::after{transform:scaleX(1)}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 22px;border:1px solid var(--btn-line);border-radius:var(--btn-radius);font-family:inherit;font-size:15px;font-weight:600;color:var(--btn-ink);background:transparent;cursor:pointer;transition:background .15s,color .15s,border-color .15s,transform .15s}
-.btn:hover{transform:translateY(-1px);border-color:var(--btn-ink)}
-.btn-main{background:var(--cta-bg);border-color:var(--cta-bg);color:var(--cta-ink)}
-.btn-main:hover{background:var(--cta-hover);border-color:var(--cta-hover)}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 22px;border:1px solid #2c343e;border-radius:7px;font-size:15px;font-weight:600;color:var(--ink);overflow:hidden;transition:border-color .2s,box-shadow .25s,transform .2s var(--ease)}
+.btn:hover{transform:translateY(-2px);border-color:var(--ink)}
+.btn-main{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn-main::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .6s var(--ease)}
+.btn-main:hover{border-color:var(--accent);box-shadow:0 10px 34px -10px rgba(var(--accent-rgb),.75)}
+.btn-main:hover::after{left:130%}
 .btn-sm{min-height:40px;padding:0 16px;font-size:14px}
 
-.hero{background:var(--hero-bg);border-bottom:1px solid var(--hero-line);--btn-line:var(--hero-btn-line);--btn-ink:var(--hero-ink)}
-.hero-in{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr);gap:clamp(32px,5vw,72px);align-items:center;padding-top:clamp(48px,7vw,84px);padding-bottom:clamp(48px,7vw,84px)}
-.hero .tag{color:var(--hero-accent)}
-.hero h1{margin-top:14px;font-size:clamp(44px,6.6vw,76px);line-height:1;color:var(--hero-ink);letter-spacing:var(--h1-track)}
-.hero-role{margin-top:14px;font-family:var(--role-font);font-style:var(--role-style);font-size:clamp(19px,2.2vw,23px);font-weight:var(--role-weight);color:var(--hero-accent)}
-.hero-pitch{margin-top:18px;max-width:34em;font-size:17px;color:var(--hero-body)}
+.hero{position:relative;border-bottom:1px solid var(--line);overflow:hidden;isolation:isolate}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero::after{content:"";position:absolute;z-index:-2;width:680px;height:680px;right:-180px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(var(--accent-rgb),.13),transparent 62%)}
+.hero-in{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:clamp(32px,5vw,64px);align-items:center;padding-top:clamp(52px,7vw,92px);padding-bottom:clamp(52px,7vw,92px)}
+.hero .tag{color:var(--accent)}
+.hero h1{margin-top:14px;font-size:clamp(46px,6.8vw,80px);line-height:1;letter-spacing:-.04em}
+.hero h1 span{display:inline-block}
+.hero-role{margin-top:16px;min-height:1.6em;font-family:var(--mono);font-size:16px;color:var(--accent)}
+.hero-role::before{content:"> ";color:var(--soft)}
+.caret{display:inline-block;width:.55em;height:1.05em;margin-left:2px;background:var(--accent);vertical-align:text-bottom;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-pitch{margin-top:18px;max-width:33em;font-size:17px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.card{background:var(--hero-card);border:1px solid var(--hero-card-line);border-radius:var(--radius);padding:8px 24px}
-.card div{display:grid;grid-template-columns:minmax(0,7.5rem) minmax(0,1fr);gap:12px;padding:13px 0;border-bottom:1px solid var(--hero-card-line)}
-.card div:last-child{border-bottom:0}
-.card dt{padding-top:3px;color:var(--hero-soft)}
-.card dd{font-size:15px;font-weight:500;color:var(--hero-ink);line-height:1.45}
 
-.section{padding:clamp(52px,7vw,84px) 0;border-bottom:1px solid var(--line)}
+.code{border:1px solid var(--line);border-radius:12px;background:rgba(13,16,20,.92);overflow:hidden;box-shadow:0 40px 90px -50px rgba(var(--accent-rgb),.45);transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .35s ease-out}
+.code-bar{display:flex;align-items:center;gap:7px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.code-bar i{width:10px;height:10px;border-radius:50%;background:#ff5f57}
+.code-bar i:nth-child(2){background:#febc2e}
+.code-bar i:nth-child(3){background:#28c840}
+.code-bar span{margin-left:8px;font-family:var(--mono);font-size:12px;color:var(--soft)}
+.code pre{padding:16px 0 18px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.8;color:#c9d1da;counter-reset:ln}
+.ln{display:block;padding-right:18px;white-space:pre}
+.ln::before{counter-increment:ln;content:counter(ln);display:inline-block;width:34px;margin-right:16px;text-align:right;color:#3d4652}
+.k{color:#c792ea}
+.p{color:#82aaff}
+.s{color:#86efac}
+.c{color:#6b7684}
+
+.section{padding:clamp(56px,7vw,92px) 0;border-bottom:1px solid var(--line)}
 .section.alt{background:var(--surface2)}
-.section-head{margin-bottom:30px}
+.section-head{margin-bottom:32px}
 .section-head .tag{color:var(--accent)}
-.section-head h2{margin-top:8px;font-size:clamp(27px,3.4vw,36px)}
+.section-head h2{margin-top:8px;font-size:clamp(28px,3.4vw,38px)}
+.section-head p:not(.tag){margin-top:10px;max-width:38em}
 
 .about{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:start}
-.about-text{font-family:var(--lede-font);font-size:var(--lede-size);line-height:1.55;color:var(--ink)}
+.about-text{font-size:18px;line-height:1.6;color:var(--ink)}
 .path li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
 .path li:first-child{padding-top:0}
 .path li:last-child{border-bottom:0}
-.path i{display:grid;place-items:center;width:30px;height:30px;border-radius:var(--dot-radius);border:1px solid var(--line);font-family:var(--mono);font-style:normal;font-size:12px;font-weight:600;color:var(--soft)}
+.path i{display:grid;place-items:center;width:30px;height:30px;border-radius:6px;border:1px solid var(--line);font-family:var(--mono);font-style:normal;font-size:12px;font-weight:600;color:var(--soft)}
 .path .now i{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .path b{display:block;font-weight:600;color:var(--ink);line-height:1.3}
 .path small{font-size:13.5px;color:var(--soft)}
 
-.job{display:grid;grid-template-columns:minmax(0,11.5rem) minmax(0,1fr);gap:8px 28px;padding:24px 0;border-top:1px solid var(--line)}
-.job:first-of-type{border-top:0;padding-top:0}
+.timeline{position:relative}
+.rail{position:absolute;top:8px;bottom:8px;left:calc(11.5rem + 21px);width:2px;border-radius:2px;background:var(--line);overflow:hidden}
+.rail i{display:block;width:100%;height:100%;background:var(--accent);transform-origin:50% 0;transform:scaleY(var(--p,0))}
+.job{position:relative;display:grid;grid-template-columns:minmax(0,11.5rem) minmax(0,1fr);gap:8px 44px;padding:26px 0}
+.job:first-of-type{padding-top:0}
 .job:last-of-type{padding-bottom:0}
+.job::after{content:"";position:absolute;left:calc(11.5rem + 15px);top:33px;width:14px;height:14px;border-radius:50%;background:var(--surface2);border:2px solid #36404c;transition:background .3s,border-color .3s,box-shadow .3s}
+.job:first-of-type::after{top:7px}
+.job.on::after{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 5px rgba(var(--accent-rgb),.16)}
 .job-when{padding-top:5px}
 .job-when .now{display:block;margin-top:5px;color:var(--accent)}
 .job h3{font-size:21px}
@@ -85,23 +131,63 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);font-weight:var(--h-weight)
 .job-did li{position:relative;padding-left:20px}
 .job-did li::before{content:"";position:absolute;left:1px;top:.7em;width:8px;height:2px;background:var(--accent)}
 
-.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.skill{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-.skill.wide{grid-column:span 2}
-.skill h3{font-size:16.5px}
-.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
-.chips li{display:inline-flex;align-items:center;min-height:30px;padding:0 12px;border:1px solid var(--chip-line);border-radius:var(--chip-radius);background:var(--chip-bg);font-family:var(--chip-font);font-size:13.5px;font-weight:500;color:var(--chip-ink)}
+@property --h{syntax:"<length>";inherits:true;initial-value:26px}
+.kb-wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(20px,4vw,48px);align-items:center}
+.kb-info{min-height:210px}
+.kb-info .tag{color:var(--accent)}
+.kb-name{margin-top:10px;font-size:clamp(38px,5.2vw,64px);font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--ink);overflow-wrap:anywhere}
+.kb-note{margin-top:14px;font-size:17px;color:var(--body);max-width:22em}
+.kb-hint{margin-top:22px;font-family:var(--mono);font-size:12.5px;color:var(--soft)}
+.kb-hint kbd{display:inline-block;padding:1px 7px;border:1px solid #36404c;border-bottom-width:2px;border-radius:5px;font-family:inherit;color:var(--ink)}
+.kb-info.swap .kb-name,.kb-info.swap .kb-cat,.kb-info.swap .kb-note{animation:swap .35s var(--ease) both}
+.kb-info.swap .kb-note{animation-delay:.05s}
+@keyframes swap{from{opacity:0;transform:translateY(12px)}}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.filter{min-height:40px;padding:0 15px;border:1px solid var(--line);border-radius:7px;font-family:var(--mono);font-size:13px;color:#9aa3af;transition:color .15s,border-color .15s,background .15s}
+.filter:hover{color:var(--ink);border-color:#3a444f}
+.filter[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600}
+.filter span{margin-left:6px;opacity:.65}
+.kb-scene{--k:60px;--g:11px;--kh:26px;position:relative;display:grid;place-items:center;height:470px;touch-action:manipulation}
+.kb-float{transform-style:preserve-3d;animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.kb{position:relative;display:grid;grid-template-columns:repeat(5,var(--k));gap:var(--g);padding:calc(var(--g) * 1.3);border-radius:18px;background:#161b21;transform-style:preserve-3d;transform:rotateX(calc(56deg + var(--tx,0deg))) rotateZ(calc(-38deg + var(--tz,0deg)));transition:transform .5s ease-out}
+.kb::before{content:"";position:absolute;left:0;bottom:0;width:100%;height:16px;background:#0b0e12;transform-origin:50% 100%;transform:rotateX(90deg)}
+.kb::after{content:"";position:absolute;left:0;top:0;width:16px;height:100%;background:#10141a;transform-origin:0 50%;transform:rotateY(90deg)}
+.kb-shadow{position:absolute;inset:6%;border-radius:30px;background:rgba(var(--accent-rgb),.28);filter:blur(46px);transform:translateZ(-70px)}
+.key{position:relative;width:var(--k);height:var(--k);--h:var(--kh);--cc:var(--c);transform-style:preserve-3d;transition:--h .13s ease-out;-webkit-tap-highlight-color:transparent}
+.key:focus-visible{outline:none}
+.key::before{content:"";position:absolute;left:0;bottom:0;width:100%;height:var(--h);background:color-mix(in srgb,var(--cc) 50%,#000);transform-origin:50% 100%;transform:rotateX(-90deg);transition:background .3s}
+.key::after{content:"";position:absolute;left:0;top:0;width:var(--h);height:100%;background:color-mix(in srgb,var(--cc) 68%,#000);transform-origin:0 50%;transform:rotateY(-90deg);transition:background .3s}
+.cap{position:absolute;inset:0;display:grid;place-items:center;border-radius:calc(var(--k) * .16);background:linear-gradient(140deg,color-mix(in srgb,var(--cc) 78%,#fff),var(--cc) 70%);box-shadow:inset 0 0 0 calc(var(--k) * .07) color-mix(in srgb,var(--cc) 88%,#000);transform:translateZ(var(--h));font-family:var(--mono);font-size:calc(var(--k) * .27);font-weight:600;letter-spacing:-.04em;color:#fff;transition:background .3s,box-shadow .3s,filter .15s}
+.cap img{width:46%;height:46%;filter:brightness(0) invert(1);transition:opacity .3s}
+.key.ink .cap{color:#1a1205}
+.key.ink .cap img{filter:brightness(0);opacity:.82}
+.key.down{--h:8px}
+.key.down .cap{filter:brightness(1.18)}
+.key:focus-visible .cap{box-shadow:inset 0 0 0 3px #fff}
+.key.dim{--cc:#29303a;--h:12px}
+.key.dim .cap{color:#5d6672}
+.key.dim .cap img{opacity:.28;filter:brightness(0) invert(1)}
+.js .kb:not(.seen) .key{opacity:0}
+.kb.seen .key{animation:drop .7s var(--ease) backwards;animation-delay:calc(var(--i) * 34ms)}
+@keyframes drop{from{opacity:0;transform:translateZ(240px)}}
+
+.extras{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:12px;margin-top:12px}
+.panel{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:22px}
+.panel h3{font-size:16.5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chips li{display:inline-flex;align-items:center;min-height:32px;padding:0 13px;border:1px solid #262d36;border-radius:5px;background:var(--surface2);font-family:var(--mono);font-size:13px;color:#d5dbe3}
 .langs{margin-top:8px}
 .langs p{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink);font-weight:500}
 .langs p:last-child{border-bottom:0;padding-bottom:0}
 .langs span{color:var(--accent);font-weight:600}
 
-.schools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.school{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.schools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.school{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:22px}
+.school:hover{border-color:rgba(var(--accent-rgb),.45)}
 .school h3{margin-top:8px;font-size:18.5px;line-height:1.25}
-.school p:not(.tag){margin-top:6px;font-size:15px;color:var(--soft)}
-.school p b{font-weight:600;color:var(--ink)}
-.courses{margin-top:16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:22px}
+.school p:not(.tag){margin-top:6px;font-size:15px;font-weight:600;color:var(--ink)}
+.courses{margin-top:12px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:22px}
 .courses ul{margin-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 32px}
 .courses li{color:var(--ink);line-height:1.4}
 .courses li span{display:block;font-size:13.5px;color:var(--soft)}
@@ -109,54 +195,72 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);font-weight:var(--h-weight)
 .project{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center}
 .project p{font-size:17px;max-width:34em}
 .project .btn{margin-top:22px}
-.logo{display:grid;place-items:center;background:var(--logo-bg);border:1px solid var(--line);border-radius:var(--radius);padding:44px 36px}
+.logo-wrap{perspective:900px}
+.logo{display:grid;place-items:center;background:#f2f4f7;border-radius:var(--radius);padding:44px 36px;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .35s ease-out,box-shadow .3s}
+.logo:hover{box-shadow:0 30px 70px -36px rgba(var(--accent-rgb),.6)}
 .logo img{width:100%;max-width:230px}
 
-.contact{background:var(--hero-bg);--btn-line:var(--hero-btn-line);--btn-ink:var(--hero-ink)}
-.contact-in{padding-top:clamp(52px,7vw,84px);padding-bottom:clamp(52px,7vw,84px)}
-.contact .tag{color:var(--hero-accent)}
-.contact h2{margin-top:8px;font-size:clamp(30px,4.4vw,46px);color:var(--hero-ink)}
-.contact-lead{margin-top:12px;max-width:34em;font-size:17px;color:var(--hero-body)}
+.contact{position:relative;overflow:hidden;isolation:isolate}
+.contact::before{content:"";position:absolute;z-index:-1;width:620px;height:620px;left:-200px;bottom:-320px;border-radius:50%;background:radial-gradient(circle,rgba(var(--accent-rgb),.12),transparent 62%)}
+.contact-in{padding-top:clamp(56px,7vw,92px);padding-bottom:clamp(56px,7vw,92px)}
+.contact .tag{color:var(--accent)}
+.contact h2{margin-top:8px;font-size:clamp(34px,5vw,54px);letter-spacing:-.035em}
+.contact-lead{margin-top:12px;max-width:34em;font-size:17px}
 .ways{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:30px}
-.ways a{display:block;padding:18px 20px;background:var(--hero-card);border:1px solid var(--hero-card-line);border-radius:var(--radius);transition:border-color .15s,transform .15s}
-.ways a:hover{border-color:var(--hero-accent);transform:translateY(-2px)}
-.ways .tag{color:var(--hero-soft)}
-.ways b{display:block;margin-top:6px;font-size:15.5px;font-weight:600;color:var(--hero-ink);overflow-wrap:anywhere;line-height:1.35}
+.way{position:relative;display:block;padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.way::before{content:"";position:absolute;inset:0;background:radial-gradient(200px circle at var(--mx,50%) var(--my,50%),rgba(var(--accent-rgb),.18),transparent 65%);opacity:0;transition:opacity .25s}
+.way:hover{border-color:rgba(var(--accent-rgb),.55)}
+.way:hover::before{opacity:1}
+.way .tag,.way b{position:relative}
+.way b{display:block;margin-top:6px;font-size:15.5px;font-weight:600;color:var(--ink);overflow-wrap:anywhere;line-height:1.35}
 
-.foot{background:var(--hero-bg);border-top:1px solid var(--hero-card-line)}
+.foot{border-top:1px solid var(--line)}
 .foot-in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 20px;padding-top:18px;padding-bottom:22px}
-.foot .tag{color:var(--hero-soft)}
+
+.js [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease),border-color .2s;transition-delay:var(--d,0ms)}
+.js [data-reveal].in{opacity:1;transform:none}
+.js .hero h1 span{opacity:0;transform:translateY(.5em);animation:rise .7s var(--ease) forwards;animation-delay:calc(var(--n) * 38ms + 120ms)}
+.js .hero .fade{opacity:0;animation:rise .7s var(--ease) forwards;animation-delay:var(--d,0ms)}
+.js .ln{opacity:0;animation:rise .45s var(--ease) forwards;animation-delay:calc(var(--n) * 85ms + 500ms)}
+@keyframes rise{to{opacity:1;transform:none}}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .btn:hover,.ways a:hover{transform:none}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js [data-reveal],.js .hero h1 span,.js .hero .fade,.js .ln,.js .kb:not(.seen) .key{opacity:1;transform:none}
 }
 @media (max-width:880px){
-  .hero-in,.about,.project{grid-template-columns:1fr}
-  .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero-in,.about,.project,.extras,.kb-wrap{grid-template-columns:1fr}
+  .kb-info{min-height:190px}
   .ways{grid-template-columns:repeat(2,minmax(0,1fr))}
   .nav-links a:not(.keep){display:none}
-  .logo{max-width:360px}
+  .logo-wrap{max-width:360px}
 }
 @media (max-width:600px){
-  .job{grid-template-columns:1fr}
+  .rail{left:6px}
+  .job{grid-template-columns:1fr;padding-left:30px}
+  .job::after{left:0;top:28px}
+  .job:first-of-type::after{top:2px}
   .job-when{padding-top:0}
   .job-when .now{display:inline;margin:0 0 0 10px}
-  .skills,.schools,.courses ul,.ways{grid-template-columns:1fr}
-  .skill.wide{grid-column:auto}
+  .schools,.courses ul,.ways{grid-template-columns:1fr}
+  .kb-scene{--k:40px;--g:8px;--kh:18px;height:340px}
+  .kb-info{min-height:0}
   .hero-actions .btn{flex:1 1 100%}
-  .card div{grid-template-columns:1fr;gap:2px}
   .nav .btn{display:none}
+  .code pre{font-size:12px}
+  .ln::before{width:22px;margin-right:12px}
 }
 </style>
 </head>
 <body>
 <a class="skip" href="#sobre-mi">Saltar al contenido</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="#inicio">David Rivera</a>
-    <nav class="nav-links" aria-label="Principal">
+    <a class="brand" href="#inicio"><i aria-hidden="true"></i>David Rivera</a>
+    <nav class="nav-links" id="nav" aria-label="Principal">
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#experiencia">Experiencia</a>
       <a href="#habilidades">Habilidades</a>
@@ -169,38 +273,38 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);font-weight:var(--h-weight)
 </header>
 
 <main id="inicio">
-  <section class="hero">
+  <section class="hero" id="hero">
+    <canvas id="grid" aria-hidden="true"></canvas>
     <div class="wrap hero-in">
       <div>
-        <p class="tag">Portafolio · Cartago, Costa Rica</p>
-        <h1>David Rivera</h1>
-        <p class="hero-role">Ingeniero de Software Full-Stack | Datos y BI</p>
-        <p class="hero-pitch">Desarrollo aplicaciones web full-stack con C#, ASP.NET Web API y JavaScript sobre SQL y Oracle, y uso Power BI y Python para reportes y automatización.</p>
-        <div class="hero-actions">
+        <p class="tag fade">Portafolio · Cartago, Costa Rica</p>
+        <h1 id="name" aria-label="David Rivera">David Rivera</h1>
+        <p class="hero-role fade" style="--d:520ms"><span id="role">Ingeniero de Software Full-Stack | Datos y BI</span><span class="caret" aria-hidden="true"></span></p>
+        <p class="hero-pitch fade" style="--d:640ms">Desarrollo aplicaciones web full-stack con C#, ASP.NET Web API y JavaScript sobre SQL y Oracle, y uso Power BI y Python para reportes y automatización.</p>
+        <div class="hero-actions fade" style="--d:760ms">
           <a class="btn btn-main" href="mailto:JR2834kla@gmail.com">Escribirme</a>
           <a class="btn" href="https://www.linkedin.com/in/david-rivera-485b60261/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="#experiencia">Ver experiencia</a>
+          <a class="btn" href="#habilidades">Ver habilidades</a>
         </div>
       </div>
-      <dl class="card">
-        <div><dt class="tag">Ahora</dt><dd>Software Engineer en Mapfre</dd></div>
-        <div><dt class="tag">Stack</dt><dd>C# · ASP.NET Web API · JavaScript · SQL · Oracle</dd></div>
-        <div><dt class="tag">Datos</dt><dd>Power BI · Python</dd></div>
-        <div><dt class="tag">Estudios</dt><dd>Ciencias de la Computación, UNED</dd></div>
-        <div><dt class="tag">Idiomas</dt><dd>Español nativo · Inglés B2+</dd></div>
-      </dl>
+      <div class="fade" style="--d:300ms">
+        <div class="code" data-tilt="5">
+          <div class="code-bar" aria-hidden="true"><i></i><i></i><i></i><span>david.ts</span></div>
+          <pre><code><span class="ln" style="--n:0"><span class="k">const</span> david <span class="c">=</span> {</span><span class="ln" style="--n:1">  <span class="p">rol</span>: <span class="s">"Software Engineer"</span>,</span><span class="ln" style="--n:2">  <span class="p">empresa</span>: <span class="s">"Mapfre"</span>,</span><span class="ln" style="--n:3">  <span class="p">stack</span>: [<span class="s">"C#"</span>, <span class="s">"ASP.NET Web API"</span>, <span class="s">"JavaScript"</span>],</span><span class="ln" style="--n:4">  <span class="p">datos</span>: [<span class="s">"SQL"</span>, <span class="s">"Oracle"</span>, <span class="s">"Power BI"</span>, <span class="s">"Python"</span>],</span><span class="ln" style="--n:5">  <span class="p">estudios</span>: <span class="s">"Computación · UNED"</span>,</span><span class="ln" style="--n:6">  <span class="p">idiomas</span>: { <span class="p">es</span>: <span class="s">"nativo"</span>, <span class="p">en</span>: <span class="s">"B2+"</span> },</span><span class="ln" style="--n:7">  <span class="p">ubicacion</span>: <span class="s">"Cartago, Costa Rica"</span>,</span><span class="ln" style="--n:8">};</span></code></pre>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section" id="sobre-mi">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="tag">01 · Sobre mí</p>
         <h2>Perfil profesional</h2>
       </div>
       <div class="about">
-        <p class="about-text">Ingeniero de software en Mapfre, donde empecé como pasante en 2025 y pasé por análisis de datos antes de llegar a desarrollo. Hoy trabajo en aplicaciones web full-stack con C#, ASP.NET Web API y JavaScript sobre SQL y Oracle, y uso Power BI y Python para reportes y automatización. Estudio Ciencias de la Computación en la UNED.</p>
-        <ol class="path">
+        <p class="about-text" data-reveal>Ingeniero de software en Mapfre, donde empecé como pasante en 2025 y pasé por análisis de datos antes de llegar a desarrollo. Hoy trabajo en aplicaciones web full-stack con C#, ASP.NET Web API y JavaScript sobre SQL y Oracle, y uso Power BI y Python para reportes y automatización. Estudio Ciencias de la Computación en la UNED.</p>
+        <ol class="path" data-reveal style="--d:120ms">
           <li class="now"><i>3</i><span><b>Software Engineer</b><small>Mapfre</small></span><span class="tag">2026 – Hoy</span></li>
           <li><i>2</i><span><b>Data Analyst</b><small>Mapfre</small></span><span class="tag">2025 – 2026</span></li>
           <li><i>1</i><span><b>Pasante</b><small>Mapfre</small></span><span class="tag">2025</span></li>
@@ -211,86 +315,118 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);font-weight:var(--h-weight)
 
   <section class="section alt" id="experiencia">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="tag">02 · Trayectoria</p>
         <h2>Experiencia</h2>
       </div>
-      <article class="job">
-        <p class="job-when tag">Sep 2026 – Actual<span class="now">Cargo actual</span></p>
-        <div>
-          <h3>Software Engineer</h3>
-          <p class="job-where"><b>Mapfre</b> · San Pedro, San José · Contrato</p>
-          <ul class="job-did">
-            <li>Desarrollo y mantenimiento de sistemas y aplicaciones web full-stack.</li>
-            <li>Servicios en C# y ASP.NET Web API; interfaces en JavaScript y HTML.</li>
-            <li>Integración de APIs (JSON) con bases de datos SQL y Oracle.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="job">
-        <p class="job-when tag">Dic 2025 – Sep 2026</p>
-        <div>
-          <h3>Data Analyst</h3>
-          <p class="job-where"><b>Mapfre</b> · Costa Rica · Tiempo completo, híbrido</p>
-          <ul class="job-did">
-            <li>Reportes y tableros de Business Intelligence en Power BI.</li>
-            <li>Análisis y visualización de datos con Python.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="job">
-        <p class="job-when tag">Oct 2025 – Nov 2025</p>
-        <div>
-          <h3>Pasante</h3>
-          <p class="job-where"><b>Mapfre</b> · San Pedro, San José · Presencial</p>
-          <ul class="job-did">
-            <li>Análisis de bases de datos.</li>
-            <li>Automatización de procesos repetitivos con VBA.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="job">
-        <p class="job-when tag">Sep 2024</p>
-        <div>
-          <h3>Pasante</h3>
-          <p class="job-where"><b>BTA Business &amp; Talent Advisors</b> · Remoto · Tiempo completo</p>
-        </div>
-      </article>
+      <div class="timeline" id="timeline">
+        <div class="rail" aria-hidden="true"><i></i></div>
+        <article class="job">
+          <p class="job-when tag">Sep 2026 – Actual<span class="now">Cargo actual</span></p>
+          <div data-reveal>
+            <h3>Software Engineer</h3>
+            <p class="job-where"><b>Mapfre</b> · San Pedro, San José · Contrato</p>
+            <ul class="job-did">
+              <li>Desarrollo y mantenimiento de sistemas y aplicaciones web full-stack.</li>
+              <li>Servicios en C# y ASP.NET Web API; interfaces en JavaScript y HTML.</li>
+              <li>Integración de APIs (JSON) con bases de datos SQL y Oracle.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <p class="job-when tag">Dic 2025 – Sep 2026</p>
+          <div data-reveal>
+            <h3>Data Analyst</h3>
+            <p class="job-where"><b>Mapfre</b> · Costa Rica · Tiempo completo, híbrido</p>
+            <ul class="job-did">
+              <li>Reportes y tableros de Business Intelligence en Power BI.</li>
+              <li>Análisis y visualización de datos con Python.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <p class="job-when tag">Oct 2025 – Nov 2025</p>
+          <div data-reveal>
+            <h3>Pasante</h3>
+            <p class="job-where"><b>Mapfre</b> · San Pedro, San José · Presencial</p>
+            <ul class="job-did">
+              <li>Análisis de bases de datos.</li>
+              <li>Automatización de procesos repetitivos con VBA.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <p class="job-when tag">Sep 2024</p>
+          <div data-reveal>
+            <h3>Pasante</h3>
+            <p class="job-where"><b>BTA Business &amp; Talent Advisors</b> · Remoto · Tiempo completo</p>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
   <section class="section" id="habilidades">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="tag">03 · Stack</p>
         <h2>Habilidades técnicas</h2>
+        <p>Cada tecla es una tecnología con la que trabajo. Tócalas.</p>
       </div>
-      <div class="skills">
-        <article class="skill wide">
-          <h3>Lenguajes</h3>
-          <ul class="chips"><li>C#</li><li>JavaScript</li><li>TypeScript</li><li>Python</li><li>SQL</li><li>Java</li><li>C++</li><li>HTML</li><li>CSS</li></ul>
-        </article>
-        <article class="skill">
-          <h3>Automatización</h3>
-          <ul class="chips"><li>n8n</li><li>UiPath</li><li>VBA</li></ul>
-        </article>
-        <article class="skill wide">
-          <h3>Frameworks y datos</h3>
-          <ul class="chips"><li>ASP.NET Web API</li><li>Node.js</li><li>APIs REST</li><li>JSON</li><li>Oracle</li><li>Power BI</li></ul>
-        </article>
-        <article class="skill">
-          <h3>Herramientas</h3>
-          <ul class="chips"><li>Git</li><li>GitHub</li><li>Bitbucket</li><li>Arduino</li></ul>
-        </article>
-        <article class="skill">
-          <h3>Inteligencia artificial</h3>
-          <ul class="chips"><li>GitHub Copilot</li><li>Claude</li><li>ChatGPT</li></ul>
-        </article>
-        <article class="skill">
+      <div class="filters" id="filters" role="group" aria-label="Filtrar habilidades" data-reveal>
+        <button class="filter" type="button" data-filter="todas" aria-pressed="true">Todas<span>25</span></button>
+        <button class="filter" type="button" data-filter="lenguajes" aria-pressed="false">Lenguajes<span>9</span></button>
+        <button class="filter" type="button" data-filter="frameworks" aria-pressed="false">Frameworks y datos<span>6</span></button>
+        <button class="filter" type="button" data-filter="automatizacion" aria-pressed="false">Automatización<span>3</span></button>
+        <button class="filter" type="button" data-filter="herramientas" aria-pressed="false">Herramientas<span>4</span></button>
+        <button class="filter" type="button" data-filter="ia" aria-pressed="false">Inteligencia artificial<span>3</span></button>
+      </div>
+      <div class="kb-wrap">
+        <div class="kb-info" id="kb-info" aria-live="polite">
+          <p class="tag kb-cat" id="kb-cat">Lenguaje</p>
+          <p class="kb-name" id="kb-name">C#</p>
+          <p class="kb-note" id="kb-note">Servicios en Mapfre</p>
+          <p class="kb-hint">Pasa el cursor, toca una tecla o escribe su inicial: <kbd>C</kbd> <kbd>P</kbd> <kbd>J</kbd></p>
+        </div>
+        <div class="kb-scene" id="kb-scene">
+          <div class="kb-float">
+            <div class="kb" id="kb">
+              <span class="kb-shadow" aria-hidden="true"></span>
+            <button class="key" type="button" style="--c:#8e44ad;--i:0" data-cat="lenguajes" data-name="C#" data-label="Lenguaje" data-note="Servicios en Mapfre" aria-label="C#, Lenguaje"><span class="cap"><img src="assets/icons/csharp.svg" alt="" /></span></button>
+            <button class="key ink" type="button" style="--c:#f0c419;--i:1" data-cat="lenguajes" data-name="JavaScript" data-label="Lenguaje" data-note="Interfaces web en Mapfre" aria-label="JavaScript, Lenguaje"><span class="cap"><img src="assets/icons/javascript.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#3178c6;--i:2" data-cat="lenguajes" data-name="TypeScript" data-label="Lenguaje" data-note="" aria-label="TypeScript, Lenguaje"><span class="cap"><img src="assets/icons/typescript.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#3d7ab5;--i:3" data-cat="lenguajes" data-name="Python" data-label="Lenguaje" data-note="Análisis y visualización de datos" aria-label="Python, Lenguaje"><span class="cap"><img src="assets/icons/python.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#0ea5a4;--i:4" data-cat="lenguajes" data-name="SQL" data-label="Lenguaje" data-note="Integración de APIs con bases de datos" aria-label="SQL, Lenguaje"><span class="cap"><img src="assets/icons/sql.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#e76f00;--i:1" data-cat="lenguajes" data-name="Java" data-label="Lenguaje" data-note="" aria-label="Java, Lenguaje"><span class="cap"><img src="assets/icons/java.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#0b6bb5;--i:2" data-cat="lenguajes" data-name="C++" data-label="Lenguaje" data-note="" aria-label="C++, Lenguaje"><span class="cap"><img src="assets/icons/cplusplus.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#e34f26;--i:3" data-cat="lenguajes" data-name="HTML" data-label="Lenguaje" data-note="Interfaces web en Mapfre" aria-label="HTML, Lenguaje"><span class="cap"><img src="assets/icons/html5.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#2965f1;--i:4" data-cat="lenguajes" data-name="CSS" data-label="Lenguaje" data-note="" aria-label="CSS, Lenguaje"><span class="cap"><img src="assets/icons/css3.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#6d3be8;--i:5" data-cat="frameworks" data-name="ASP.NET Web API" data-label="Framework" data-note="Servicios en Mapfre" aria-label="ASP.NET Web API, Framework"><span class="cap">.NET</span></button>
+            <button class="key" type="button" style="--c:#3c9a3a;--i:2" data-cat="frameworks" data-name="Node.js" data-label="Framework" data-note="" aria-label="Node.js, Framework"><span class="cap"><img src="assets/icons/nodejs.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#0891b2;--i:3" data-cat="frameworks" data-name="APIs REST" data-label="Integración" data-note="Integración de APIs con SQL y Oracle" aria-label="APIs REST, Integración"><span class="cap">API</span></button>
+            <button class="key" type="button" style="--c:#64748b;--i:4" data-cat="frameworks" data-name="JSON" data-label="Datos" data-note="Integración de APIs" aria-label="JSON, Datos"><span class="cap"><img src="assets/icons/json.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#c74634;--i:5" data-cat="frameworks" data-name="Oracle" data-label="Base de datos" data-note="Integración de APIs con bases de datos" aria-label="Oracle, Base de datos"><span class="cap">ORA</span></button>
+            <button class="key ink" type="button" style="--c:#f2c811;--i:6" data-cat="frameworks" data-name="Power BI" data-label="Datos" data-note="Reportes y tableros de Business Intelligence" aria-label="Power BI, Datos"><span class="cap">BI</span></button>
+            <button class="key" type="button" style="--c:#ea4b71;--i:3" data-cat="automatizacion" data-name="n8n" data-label="Automatización" data-note="" aria-label="n8n, Automatización"><span class="cap"><img src="assets/icons/n8n.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#fa4616;--i:4" data-cat="automatizacion" data-name="UiPath" data-label="Automatización" data-note="" aria-label="UiPath, Automatización"><span class="cap">Ui</span></button>
+            <button class="key" type="button" style="--c:#7c3aed;--i:5" data-cat="automatizacion" data-name="VBA" data-label="Automatización" data-note="Automatización de procesos repetitivos" aria-label="VBA, Automatización"><span class="cap">VBA</span></button>
+            <button class="key" type="button" style="--c:#f05032;--i:6" data-cat="herramientas" data-name="Git" data-label="Herramienta" data-note="" aria-label="Git, Herramienta"><span class="cap"><img src="assets/icons/git.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#4a5462;--i:7" data-cat="herramientas" data-name="GitHub" data-label="Herramienta" data-note="" aria-label="GitHub, Herramienta"><span class="cap"><img src="assets/icons/github.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#2684ff;--i:4" data-cat="herramientas" data-name="Bitbucket" data-label="Herramienta" data-note="" aria-label="Bitbucket, Herramienta"><span class="cap"><img src="assets/icons/bitbucket.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#00979d;--i:5" data-cat="herramientas" data-name="Arduino" data-label="Herramienta" data-note="" aria-label="Arduino, Herramienta"><span class="cap"><img src="assets/icons/arduino.svg" alt="" /></span></button>
+            <button class="key" type="button" style="--c:#6e40c9;--i:6" data-cat="ia" data-name="GitHub Copilot" data-label="Inteligencia artificial" data-note="" aria-label="GitHub Copilot, Inteligencia artificial"><span class="cap">Co</span></button>
+            <button class="key" type="button" style="--c:#d97757;--i:7" data-cat="ia" data-name="Claude" data-label="Inteligencia artificial" data-note="" aria-label="Claude, Inteligencia artificial"><span class="cap">Cl</span></button>
+            <button class="key" type="button" style="--c:#10a37f;--i:8" data-cat="ia" data-name="ChatGPT" data-label="Inteligencia artificial" data-note="" aria-label="ChatGPT, Inteligencia artificial"><span class="cap">GPT</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="extras">
+        <article class="panel" data-reveal>
           <h3>Competencias</h3>
           <ul class="chips"><li>Capacidad de análisis</li><li>Análisis funcional</li><li>Negociación</li></ul>
         </article>
-        <article class="skill">
+        <article class="panel" data-reveal style="--d:100ms">
           <h3>Idiomas</h3>
           <div class="langs">
             <p>Español <span>Nativo</span></p>
@@ -303,33 +439,33 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);font-weight:var(--h-weight)
 
   <section class="section alt" id="educacion">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="tag">04 · Formación</p>
         <h2>Educación</h2>
       </div>
       <div class="schools">
-        <article class="school">
+        <article class="school" data-reveal>
           <p class="tag">2026 – 2028 · En curso</p>
           <h3>Bachillerato en Ciencias de la Computación</h3>
-          <p><b>UNED</b></p>
+          <p>UNED</p>
         </article>
-        <article class="school">
+        <article class="school" data-reveal style="--d:80ms">
           <p class="tag">Técnico</p>
           <h3>Técnico en Ingeniería, Análisis Funcional</h3>
-          <p><b>Universidad Cenfotec</b></p>
+          <p>Universidad Cenfotec</p>
         </article>
-        <article class="school">
+        <article class="school" data-reveal>
           <p class="tag">Técnico</p>
           <h3>Técnico en Servicios de Apoyo Bancario y Financiero</h3>
-          <p><b>CTP</b></p>
+          <p>CTP</p>
         </article>
-        <article class="school">
+        <article class="school" data-reveal style="--d:80ms">
           <p class="tag">2020 – 2025</p>
           <h3>Educación secundaria</h3>
-          <p><b>Fernando Volio</b></p>
+          <p>Fernando Volio</p>
         </article>
       </div>
-      <div class="courses">
+      <div class="courses" data-reveal>
         <p class="tag">Cursos complementarios</p>
         <ul>
           <li>Legitimación de Capitales y Financiamiento al Terrorismo<span>ICD, 2024</span></li>
@@ -343,30 +479,34 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);font-weight:var(--h-weight)
 
   <section class="section" id="proyecto">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="tag">05 · Proyecto propio</p>
         <h2>DRT Solutions</h2>
       </div>
       <div class="project">
-        <div>
+        <div data-reveal>
           <p>Fundé DRT Solutions, mi empresa de desarrollo de páginas web para negocios en Costa Rica. Me encargo de todo el recorrido: levantar requerimientos, diseñar, construir, publicar y dar soporte.</p>
           <a class="btn" href="https://drtsolutionscr.com" target="_blank" rel="noopener">Visitar drtsolutionscr.com</a>
         </div>
-        <div class="logo"><img src="assets/drt-solutions.png" alt="Logo de DRT Solutions" width="790" height="308" /></div>
+        <div class="logo-wrap" data-reveal style="--d:120ms">
+          <div class="logo" data-tilt="7"><img src="assets/drt-solutions.png" alt="Logo de DRT Solutions" width="790" height="308" /></div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="contact" id="contacto">
     <div class="wrap contact-in">
-      <p class="tag">06 · Contacto</p>
-      <h2>¿Hablamos?</h2>
-      <p class="contact-lead">Estoy en Cartago, Costa Rica. Escríbeme por el medio que prefieras.</p>
+      <div data-reveal>
+        <p class="tag">06 · Contacto</p>
+        <h2>¿Hablamos?</h2>
+        <p class="contact-lead">Estoy en Cartago, Costa Rica. Escríbeme por el medio que prefieras.</p>
+      </div>
       <div class="ways">
-        <a href="mailto:JR2834kla@gmail.com"><span class="tag">Correo</span><b>JR2834kla@gmail.com</b></a>
-        <a href="tel:+50686743820"><span class="tag">Teléfono</span><b>+506 8674 3820</b></a>
-        <a href="https://www.linkedin.com/in/david-rivera-485b60261/" target="_blank" rel="noopener"><span class="tag">LinkedIn</span><b>david-rivera-485b60261</b></a>
-        <a href="https://wa.me/50686743820" target="_blank" rel="noopener"><span class="tag">WhatsApp</span><b>Mensaje directo</b></a>
+        <a class="way" data-reveal href="mailto:JR2834kla@gmail.com"><span class="tag">Correo</span><b>JR2834kla@gmail.com</b></a>
+        <a class="way" data-reveal style="--d:70ms" href="tel:+50686743820"><span class="tag">Teléfono</span><b>+506 8674 3820</b></a>
+        <a class="way" data-reveal style="--d:140ms" href="https://www.linkedin.com/in/david-rivera-485b60261/" target="_blank" rel="noopener"><span class="tag">LinkedIn</span><b>david-rivera-485b60261</b></a>
+        <a class="way" data-reveal style="--d:210ms" href="https://wa.me/50686743820" target="_blank" rel="noopener"><span class="tag">WhatsApp</span><b>Mensaje directo</b></a>
       </div>
     </div>
   </section>
@@ -380,7 +520,245 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);font-weight:var(--h-weight)
 </footer>
 
 <script>
-document.getElementById('year').textContent=new Date().getFullYear();
+(function(){
+  var doc=document.documentElement;
+  var calm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+
+  $('#year').textContent=new Date().getFullYear();
+
+  var name=$('#name');
+  if(!calm){
+    var letters=name.textContent.split('');
+    name.textContent='';
+    letters.forEach(function(ch,i){
+      var s=document.createElement('span');
+      s.textContent=ch===' '?' ':ch;
+      s.style.setProperty('--n',i);
+      s.setAttribute('aria-hidden','true');
+      name.appendChild(s);
+    });
+  }
+
+  var role=$('#role');
+  if(!calm){
+    var full=role.textContent;
+    role.textContent='';
+    var at=0;
+    setTimeout(function type(){
+      role.textContent=full.slice(0,++at);
+      if(at<full.length)setTimeout(type,26+Math.random()*34);
+    },900);
+  }
+
+  var revealer=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');revealer.unobserve(e.target)}
+    });
+  },{threshold:.14,rootMargin:'0px 0px -6% 0px'});
+  $$('[data-reveal]').forEach(function(el){revealer.observe(el)});
+
+  var kb=$('#kb');
+  var scene=$('#kb-scene');
+  var info=$('#kb-info');
+  var keys=$$('.key',kb);
+  var current=null,busy=0,cursor=0,inView=false;
+  function show(key){
+    if(current===key)return;
+    current=key;
+    $('#kb-name').textContent=key.getAttribute('data-name');
+    $('#kb-cat').textContent=key.getAttribute('data-label');
+    $('#kb-note').textContent=key.getAttribute('data-note');
+    info.classList.remove('swap');
+    void info.offsetWidth;
+    info.classList.add('swap');
+  }
+  function tap(key,ms){
+    show(key);
+    key.classList.add('down');
+    clearTimeout(key._t);
+    key._t=setTimeout(function(){key.classList.remove('down')},ms||420);
+  }
+  function touched(){busy=Date.now()}
+  keys.forEach(function(key){
+    key.addEventListener('pointerenter',function(e){
+      if(e.pointerType==='touch')return;
+      touched();show(key);clearTimeout(key._t);key.classList.add('down');
+    });
+    key.addEventListener('pointerleave',function(){key.classList.remove('down')});
+    key.addEventListener('focus',function(){touched();show(key)});
+    key.addEventListener('click',function(){touched();tap(key,520)});
+  });
+  function live(){return keys.filter(function(k){return !k.classList.contains('dim')})}
+  document.addEventListener('keydown',function(e){
+    if(!inView||e.ctrlKey||e.metaKey||e.altKey||e.key.length!==1)return;
+    var ch=e.key.toLowerCase();
+    if(ch===' ')return;
+    var pool=live();
+    var hits=pool.filter(function(k){return k.getAttribute('data-name').toLowerCase().charAt(0)===ch});
+    var key;
+    if(hits.length){
+      var idx=hits.indexOf(current);
+      key=hits[(idx+1)%hits.length];
+    }else{
+      key=pool[Math.floor(Math.random()*pool.length)];
+    }
+    touched();
+    tap(key,360);
+  });
+  new IntersectionObserver(function(entries){
+    inView=entries[0].isIntersecting;
+    if(inView)kb.classList.add('seen');
+  },{threshold:.3}).observe(scene);
+  if(!calm){
+    setInterval(function(){
+      if(!inView||document.hidden||Date.now()-busy<5000)return;
+      var pool=live();
+      cursor=(cursor+1)%pool.length;
+      tap(pool[cursor],650);
+    },1500);
+    scene.addEventListener('pointermove',function(e){
+      if(!fine)return;
+      var r=scene.getBoundingClientRect();
+      var x=(e.clientX-r.left)/r.width-.5;
+      var y=(e.clientY-r.top)/r.height-.5;
+      kb.style.setProperty('--tz',(x*-9).toFixed(2)+'deg');
+      kb.style.setProperty('--tx',(y*-7).toFixed(2)+'deg');
+    });
+    scene.addEventListener('pointerleave',function(){
+      kb.style.setProperty('--tz','0deg');
+      kb.style.setProperty('--tx','0deg');
+    });
+  }
+
+  var filters=$$('.filter');
+  filters.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var want=btn.getAttribute('data-filter');
+      filters.forEach(function(b){b.setAttribute('aria-pressed',b===btn?'true':'false')});
+      keys.forEach(function(k){
+        k.classList.toggle('dim',want!=='todas'&&k.getAttribute('data-cat')!==want);
+      });
+      touched();
+      cursor=0;
+      tap(live()[0],650);
+    });
+  });
+
+  function glow(el,e){
+    var r=el.getBoundingClientRect();
+    el.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    el.style.setProperty('--my',(e.clientY-r.top)+'px');
+    return r;
+  }
+  function tilt(el,max){
+    el.addEventListener('pointermove',function(e){
+      var r=glow(el,e);
+      if(!fine||calm)return;
+      var x=(e.clientX-r.left)/r.width-.5;
+      var y=(e.clientY-r.top)/r.height-.5;
+      el.style.setProperty('--ry',(x*max*2).toFixed(2)+'deg');
+      el.style.setProperty('--rx',(-y*max*2).toFixed(2)+'deg');
+    });
+    el.addEventListener('pointerleave',function(){
+      el.style.setProperty('--rx','0deg');
+      el.style.setProperty('--ry','0deg');
+    });
+  }
+  $$('[data-tilt]').forEach(function(el){tilt(el,parseFloat(el.getAttribute('data-tilt')))});
+  $$('.way').forEach(function(el){el.addEventListener('pointermove',function(e){glow(el,e)})});
+
+  var progress=$('#progress');
+  var timeline=$('#timeline');
+  var jobs=$$('.job',timeline);
+  var ticking=false;
+  function onScroll(){
+    ticking=false;
+    var max=doc.scrollHeight-window.innerHeight;
+    progress.style.setProperty('--s',max>0?(window.scrollY/max).toFixed(4):0);
+    var line=window.innerHeight*.62;
+    var r=timeline.getBoundingClientRect();
+    var p=Math.max(0,Math.min(1,(line-r.top)/r.height));
+    timeline.style.setProperty('--p',p.toFixed(4));
+    jobs.forEach(function(j){j.classList.toggle('on',j.getBoundingClientRect().top+30<line)});
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ticking=true;requestAnimationFrame(onScroll)}
+  },{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+
+  var links=$$('#nav a');
+  var spy=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id)});
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  links.forEach(function(a){
+    var target=$(a.getAttribute('href'));
+    if(target)spy.observe(target);
+  });
+
+  var hero=$('#hero');
+  var canvas=$('#grid');
+  var ctx=canvas.getContext('2d');
+  var gap=30,w=0,h=0,running=false,frame=0;
+  var mouse={x:-9999,y:-9999,tx:-9999,ty:-9999};
+  function size(){
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    w=hero.clientWidth;h=hero.clientHeight;
+    canvas.width=w*dpr;canvas.height=h*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function draw(t){
+    ctx.clearRect(0,0,w,h);
+    mouse.x+=(mouse.tx-mouse.x)*.14;
+    mouse.y+=(mouse.ty-mouse.y)*.14;
+    var reach=170;
+    for(var y=gap/2;y<h;y+=gap){
+      for(var x=gap/2;x<w;x+=gap){
+        var dx=x-mouse.x,dy=y-mouse.y;
+        var d=Math.sqrt(dx*dx+dy*dy);
+        var near=d<reach?1-d/reach:0;
+        var wave=.5+.5*Math.sin(x*.012+y*.016+t*.0011);
+        var a=.07+wave*.07+near*.85;
+        var s=1.3+near*2.6;
+        var push=near*7;
+        var px=d>0?x+dx/d*push:x;
+        var py=d>0?y+dy/d*push:y;
+        ctx.fillStyle=near>.02?'rgba(74,222,128,'+a.toFixed(3)+')':'rgba(148,163,184,'+a.toFixed(3)+')';
+        ctx.fillRect(px-s/2,py-s/2,s,s);
+      }
+    }
+  }
+  function loop(t){
+    if(!running)return;
+    draw(t);
+    frame=requestAnimationFrame(loop);
+  }
+  size();
+  draw(0);
+  window.addEventListener('resize',function(){size();draw(0)});
+  if(!calm){
+    hero.addEventListener('pointermove',function(e){
+      var r=hero.getBoundingClientRect();
+      mouse.tx=e.clientX-r.left;mouse.ty=e.clientY-r.top;
+    });
+    hero.addEventListener('pointerleave',function(){mouse.tx=-9999;mouse.ty=-9999});
+    new IntersectionObserver(function(entries){
+      var visible=entries[0].isIntersecting;
+      if(visible&&!running){running=true;frame=requestAnimationFrame(loop)}
+      if(!visible&&running){running=false;cancelAnimationFrame(frame)}
+    }).observe(hero);
+  }
+
+  console.log('%cHola, dev.','font:600 22px sans-serif;color:#4ade80');
+  console.log('%c¿Revisando el código? Hablemos: JR2834kla@gmail.com','font:14px monospace;color:#b3bbc6');
+})();
 </script>
 </body>
 </html>
